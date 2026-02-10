@@ -30,11 +30,7 @@ Expand-Archive -Path $zipPath -DestinationPath "$env:TEMP\azcopy" -Force
 $azcopyExe = Get-ChildItem "$env:TEMP\azcopy" -Recurse -Filter azcopy.exe | Select-Object -First 1 -Expand FullName
 Write-Host "AzCopy at $azcopyExe"
 
-
-$env:AZCOPY_MSI_CLIENT_ID = "e884b190-8b2a-49e3-851d-0b913de2e5df"
-
-& $azcopyExe login --identity --identity-client-id "e884b190-8b2a-49e3-851d-0b913de2e5df"
-
+& $azcopyExe login --identity 
 & $azcopyExe copy "https://${StorageAccount}.blob.core.windows.net/${Container}/${prefix}?${sas}" $DownloadDir --recursive
 
 <# 
@@ -260,3 +256,4 @@ Write-Host ("Logs directory:             {0}" -f ($LogDir))
 Write-Host "----------------------------"
 
 Write-Info "Installation script completed."
+
