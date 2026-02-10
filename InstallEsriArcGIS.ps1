@@ -31,7 +31,7 @@ $azcopyExe = Get-ChildItem "$env:TEMP\azcopy" -Recurse -Filter azcopy.exe | Sele
 Write-Host "AzCopy at $azcopyExe"
 
 & $azcopyExe login --identity 
-& $azcopyExe copy "https://${StorageAccount}.blob.core.windows.net/${Container}/${prefix}?${sas}" $DownloadDir --recursive
+& $azcopyExe copy "https://${StorageAccount}.blob.core.windows.net/${Container}/${prefix}" $DownloadDir --recursive
 
 <# 
     ArcGIS Pro install bootstrap
@@ -256,4 +256,5 @@ Write-Host ("Logs directory:             {0}" -f ($LogDir))
 Write-Host "----------------------------"
 
 Write-Info "Installation script completed."
+
 
