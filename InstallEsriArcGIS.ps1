@@ -30,7 +30,7 @@ Expand-Archive -Path $zipPath -DestinationPath "$env:TEMP\azcopy" -Force
 $azcopyExe = Get-ChildItem "$env:TEMP\azcopy" -Recurse -Filter azcopy.exe | Select-Object -First 1 -Expand FullName
 Write-Host "AzCopy at $azcopyExe"
 
-& $azcopyExe login --identity 
+& $azcopyExe login --identity --identity-client-id e398672f-0860-445a-abb7-493148eb7be7
 & $azcopyExe copy "https://${StorageAccount}.blob.core.windows.net/${Container}/${prefix}" $DownloadDir --recursive
 
 <# 
